@@ -53,5 +53,13 @@ if uploaded_file is not None:
 
     if st.button("분류 시작"):
         st.write("🔍 이미지를 분석 중입니다...")
-        data = loadmodel(uploaded_file.name)
-        st.write(data)
+        class_name, confidence = loadmodel(uploaded_file.name)
+        
+        st.success("✅ 분류 결과")
+        st.markdown(f"**예측된 클래스:** `{class_name}`")
+        st.markdown(f"**신뢰도:** `{confidence:.2%}`")
+        
+        if "bleached" in class_name.lower():
+            st.warning("⚠️ 이 산호는 죽은 산호초로 분류되었습니다. 해양 환경에 악영향이 있을 수 있습니다.")
+        else:
+            st.info("🌿 이 산호는 건강한 산호초로 분류되었습니다.")

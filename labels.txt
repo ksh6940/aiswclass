@@ -1,0 +1,2 @@
+0 healthy coral
+1 bleached_coral
